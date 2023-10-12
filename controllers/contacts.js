@@ -2,11 +2,14 @@ const { Contact } = require("../models/contact");
 const { ctrlWrapper } = require("../helpers");
 
 const getAll = async (req, res) => {
-  const {_id: owner} = req.user;
-    const {page = 1, limit = 10} = req.query;
-    const skip = (page - 1) * limit;
-    const result = await Contact.find({owner}, "-createdAt -updatedAt", {skip, limit}).populate("owner", "name email");
-    res.json(result);
+  const { _id: owner } = req.user;
+  const { page = 1, limit = 10 } = req.query;
+  const skip = (page - 1) * limit;
+  const result = await Contact.find({ owner }, "-createdAt -updatedAt", {
+    skip,
+    limit,
+  }).populate("owner", "name email");
+  res.json(result);
 };
 
 const getContactById = async (req, res) => {
@@ -19,8 +22,8 @@ const getContactById = async (req, res) => {
 };
 
 const postContact = async (req, res) => {
-  const{_id:owner}=req.user;
-  const result = await Contact.create(...req.body,owner);
+  const { _id: owner } = req.user;
+  const result = await Contact.create(...req.body, owner);
   res.status(201).json(result);
 };
 
@@ -37,7 +40,7 @@ const putContact = async (req, res) => {
   const { id } = req.params;
   const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
-    throw new Error( "Not found");
+    throw new Error("Not found");
   }
   res.status(200).json(result);
 };
