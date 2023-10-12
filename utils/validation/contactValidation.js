@@ -1,4 +1,3 @@
-
 const Joi = require("joi");
 
 const nameRegExp = "^[A-Za-zА-Яа-я]+( [A-Za-zА-Яа-я]+)?$";
@@ -23,4 +22,4 @@ const schemas = {
   addSchema,
   updateFavoriteSchema,
 };
-module.exports = { addSchema,schemas};
+module.exports = { addSchema, schemas };
