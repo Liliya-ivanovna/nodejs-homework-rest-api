@@ -14,10 +14,9 @@ app.use(express.json());
 app.use(express.static("public"));
 
 const createHashPassword = async (password) => {
-  const result = await bcryptjs.hash(password, 10);
-  console.log(result);
+  return await bcryptjs.hash(password, 10);
 };
-createHashPassword("123456");
+createHashPassword();
 
 app.use("/api/auth", authRouter);
 app.use("/api/contacts", contactsRouter);
