@@ -13,10 +13,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-const createHashPassword = async (password) => {
-  return await bcryptjs.hash(password, 10);
-};
-createHashPassword();
+const createHashPassword = (password) => {
+  return bcryptjs.hash(password, 10);
+ };
+
 
 app.use("/api/auth", authRouter);
 app.use("/api/contacts", contactsRouter);
